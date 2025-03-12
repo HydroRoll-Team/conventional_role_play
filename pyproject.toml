@@ -3,16 +3,16 @@ requires = ["maturin>=1.4,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "pyo3_template"
+name = "conventionalrp"
 dynamic = ["version"]
-description = "HydroRoll Pyo3 Project Template"
-authors = [{ name = "yourname", email = "you@hydroroll.team" }]
+description = "HydroRoll Conventional Role Play SDK"
+authors = [{ name = "HsiangNianian", email = "leader@hydroroll.team" }]
 dependencies = []
 requires-python = ">=3.9"
 readme.content-type = "text/x-rst"
 readme.text = """
 """
-license = { text = "MIT" }
+license = { text = "AGPLv3.0" }
 keywords = ["hydroroll"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -27,17 +27,13 @@ classifiers = [
 
 [project.urls]
 homepage = "https://hydroroll.team/"
-repository = "https://github.com/HydroRoll-Team/{project}"
-documentation = "https://{project}.hydroroll.team/"
-
-[project.scripts]
-pyo3_template = "pyo3_template.__main__:main"
-pyo3t = "pyo3_template.__main__:main"
+repository = "https://github.com/HydroRoll-Team/conventional_role_play"
+documentation = "https://crp.hydroroll.team/"
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
-module-name = "pyo3_template._core"
-python-package = "pyo3_template"
+module-name = "conventionalrp._core"
+python-package = "conventionalrp"
 python-source = "src"
 
 [tool.ruff]
