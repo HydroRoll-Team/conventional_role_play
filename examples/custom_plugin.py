@@ -1,4 +1,4 @@
-from trpg_log_processor.plugins.plugin_manager import PluginManager
+from conventionalrp.plugins.plugin_manager import PluginManager
 
 class CustomPlugin:
     def __init__(self):

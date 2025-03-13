@@ -172,7 +172,7 @@ wheels = [
 ]
 
 [[package]]
-name = "conventional-role-play"
+name = "conventionalrp"
 source = { editable = "." }
 
 [package.dev-dependencies]
