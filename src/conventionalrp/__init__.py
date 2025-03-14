@@ -1,5 +1,16 @@
 from . import _core
 
-from packaging.version import Version
+__all__ = ["_core", "__version__"]
 
-__version__ = Version('0.2.1')
+from importlib.metadata import version
+from pkg_resources import get_distribution
+
+try:
+    # For Python 3.8+
+    __version__ = version("conventionalrp")
+except ImportError:
+    try:
+        # For Python < 3.8
+        __version__ = get_distribution("conventionalrp").version
+    except Exception:
+        raise ImportError("Failed to get version")
