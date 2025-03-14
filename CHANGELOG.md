@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.2] - 2025-03-14
+### Chores
+- [`6d3a6d8`](https://github.com/HydroRoll-Team/conventional_role_play/commit/6d3a6d851d88e572e2125932febfb9844064a7d1) - replace README.rst with README.md and update pyproject.toml to reference new README format *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`1ddf2a5`](https://github.com/HydroRoll-Team/conventional_role_play/commit/1ddf2a5202e065a5df18dfa58a88faa5784a3f8c) - bump version to 0.2.2 and update version retrieval method in __init__.py *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.2.1] - 2025-03-14
 ### Chores
 - [`00e130b`](https://github.com/HydroRoll-Team/conventional_role_play/commit/00e130b06051a7d250d2a0a9b901d46cbd9eb756) - update CI workflow to use Python 3.9 and add interpreter finding option *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -12,3 +18,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [`9b696f0`](https://github.com/HydroRoll-Team/conventional_role_play/commit/9b696f003a2b7da575ea086c6ddc0c579a13f46b) - rename project to conventionalrp and update metadata in Cargo.toml and pyproject.toml *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
 
 [v0.2.1]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.0...v0.2.1
+[v0.2.2]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.1...v0.2.2
