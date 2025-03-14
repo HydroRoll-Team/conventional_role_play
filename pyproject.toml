@@ -10,8 +10,7 @@ authors = [{ name = "HsiangNianian", email = "leader@hydroroll.team" }]
 dependencies = []
 requires-python = ">=3.9"
 readme.content-type = "text/x-rst"
-readme.text = """
-"""
+readme.file = "README.rst"
 license = { text = "AGPLv3.0" }
 keywords = ["hydroroll"]
 classifiers = [
