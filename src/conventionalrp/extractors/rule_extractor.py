@@ -13,7 +13,8 @@ class RuleExtractor(BaseExtractor):
 
     def load_rules_from_file(self):
         import json
-        with open(self.config_file, 'r') as file:
+
+        with open(self.config_file, "r") as file:
             return json.load(file)
 
     def extract(self):

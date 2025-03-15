@@ -1,13 +1,14 @@
 from .base import BaseRenderer
 
+
 class MarkdownRenderer(BaseRenderer):
     def render(self, data):
         """
         Renders the given data in Markdown format.
-        
+
         Args:
             data (dict): The data to render.
-        
+
         Returns:
             str: The rendered Markdown string.
         """
@@ -19,7 +20,7 @@ class MarkdownRenderer(BaseRenderer):
     def set_style(self, style):
         """
         Sets the style for the Markdown renderer.
-        
+
         Args:
             style (dict): A dictionary of style options.
         """

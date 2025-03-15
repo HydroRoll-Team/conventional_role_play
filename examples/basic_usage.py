@@ -3,10 +3,11 @@ from conventionalrp.core.processor import Processor
 from conventionalrp.extractors.rule_extractor import RuleExtractor
 from conventionalrp.renderers.html_renderer import HTMLRenderer
 
+
 def main():
     # Initialize the parser and load rules
     parser = Parser()
-    parser.load_rules('path/to/rules.json')
+    parser.load_rules("path/to/rules.json")
 
     # Parse the TRPG log
     log_data = "Your TRPG log data here"
@@ -14,7 +15,7 @@ def main():
 
     # Initialize the rule extractor
     extractor = RuleExtractor()
-    rules = extractor.extract('path/to/rules.json')
+    rules = extractor.extract("path/to/rules.json")
 
     # Process the parsed tokens
     processor = Processor()
@@ -26,6 +27,7 @@ def main():
 
     # Print or save the output
     print(output)
+
 
 if __name__ == "__main__":
     main()

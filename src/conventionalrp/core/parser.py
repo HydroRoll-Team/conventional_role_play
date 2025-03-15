@@ -2,18 +2,19 @@ import json
 import re
 from pathlib import Path
 
+
 class Parser:
     def __init__(self):
         self.rules = []
 
-    def load_rules(self, rules_path : str):
+    def load_rules(self, rules_path: str):
         """Load parsing rules."""
         if not Path(rules_path).exists():
             raise FileNotFoundError(f"No such file or directory: {rules_path} ")
 
         with open(rules_path, "r", encoding="utf-8") as f:
             file_content = f.read()
-        
+
         rules = json.loads(file_content)
 
         # validation rule format
