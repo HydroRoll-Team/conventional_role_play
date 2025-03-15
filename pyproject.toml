@@ -9,9 +9,7 @@ description = "HydroRoll Conventional Role Play SDK"
 authors = [{ name = "HsiangNianian", email = "leader@hydroroll.team" }]
 dependencies = []
 requires-python = ">=3.9"
-readme.content-type = "text/x-rst"
-readme.text = """
-"""
+readme = "README.md"
 license = { text = "AGPLv3.0" }
 keywords = ["hydroroll"]
 classifiers = [

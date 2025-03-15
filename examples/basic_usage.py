@@ -1,7 +1,7 @@
-from trpg_log_processor.core.parser import Parser
-from trpg_log_processor.core.processor import Processor
-from trpg_log_processor.extractors.rule_extractor import RuleExtractor
-from trpg_log_processor.renderers.html_renderer import HTMLRenderer
+from conventionalrp.core.parser import Parser
+from conventionalrp.core.processor import Processor
+from conventionalrp.extractors.rule_extractor import RuleExtractor
+from conventionalrp.renderers.html_renderer import HTMLRenderer
 
 def main():
     # Initialize the parser and load rules

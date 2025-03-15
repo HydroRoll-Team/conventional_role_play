@@ -1,13 +1,13 @@
 [package]
-name = "pyo3_template"
-version = "0.0.1"
+name = "conventionalrp"
+version = "0.2.2"
 edition = "2021"
-description = "A Pyo3 Project Template For HydroRoll."
-license = "MIT"
+description = "HydroRoll Conventional Role Play SDK"
+license = "AGPLv3.0"
 documentation = "https://{project}.hydroroll.team/"
-homepage = "https://hydroroll.team/"
-repository = "https://github.com/HydroRoll-Team/{project}"
-authors = ["yourname"]
+homepage = "https://crp.hydroroll.team/"
+repository = "https://github.com/HydroRoll-Team/conventional_role_play"
+authors = ["HsiangNianian"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
