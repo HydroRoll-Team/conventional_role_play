@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.3] - 2025-03-15
+### New Features
+- [`d7799f1`](https://github.com/HydroRoll-Team/conventional_role_play/commit/d7799f1ff7fca7525fd09c2e51f366be1d0886b5) - simple parser rules load and log processing *(commit by [@pineoncellar](https://github.com/pineoncellar))*
+- [`ee15a8b`](https://github.com/HydroRoll-Team/conventional_role_play/commit/ee15a8b3174048f1c9f7f53a51d1e5b7a2410054) - :page_facing_up: Add sample rule and log files *(commit by [@pineoncellar](https://github.com/pineoncellar))*
+
+### Bug Fixes
+- [`5c5b871`](https://github.com/HydroRoll-Team/conventional_role_play/commit/5c5b8713e90642a767c67eb8da7c9a40e5ca6859) - update documentation URL in Cargo.toml *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.2.2] - 2025-03-14
 ### Chores
 - [`6d3a6d8`](https://github.com/HydroRoll-Team/conventional_role_play/commit/6d3a6d851d88e572e2125932febfb9844064a7d1) - replace README.rst with README.md and update pyproject.toml to reference new README format *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
@@ -19,3 +28,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v0.2.1]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.0...v0.2.1
 [v0.2.2]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.1...v0.2.2
+[v0.2.3]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.2...v0.2.3
