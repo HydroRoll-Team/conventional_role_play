@@ -12,7 +12,9 @@ class Parser:
             raise FileNotFoundError(f"No such file or directory: {rules_path} ")
 
         with open(rules_path, "r", encoding="utf-8") as f:
-            rules = json.load(f)
+            file_content = f.read()
+        
+        rules = json.loads(file_content)
 
         # validation rule format
         if rules is None:
