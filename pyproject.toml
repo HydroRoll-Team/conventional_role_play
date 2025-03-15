@@ -101,6 +101,7 @@ line-ending = "auto"
 dev = [
     "docutils>=0.21.2",
     "furo>=2024.8.6",
+    "json5>=0.10.0",
     "myst-parser>=3.0.1",
     "ruff>=0.9.6",
     "sphinx>=7.4.7",

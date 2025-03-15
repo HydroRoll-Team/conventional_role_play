@@ -1,4 +1,4 @@
-import json
+import json5
 import re
 from pathlib import Path
 
@@ -15,7 +15,7 @@ class Parser:
         with open(rules_path, "r", encoding="utf-8") as f:
             file_content = f.read()
 
-        rules = json.loads(file_content)
+        rules = json5.loads(file_content)
 
         # validation rule format
         if rules is None:
