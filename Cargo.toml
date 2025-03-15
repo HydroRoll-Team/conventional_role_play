@@ -1,6 +1,6 @@
 [package]
 name = "conventionalrp"
-version = "0.2.2"
+version = "0.2.3"
 edition = "2021"
 description = "HydroRoll Conventional Role Play SDK"
 license = "AGPLv3.0"
