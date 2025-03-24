@@ -23,6 +23,7 @@ class Parser:
         # to be continue...
 
         self.rules = rules
+        print(f"Rules loaded: {rules}\n")
 
     def parse_log(self, log_path: str):
         """Parse the TRPG log based on loaded rules."""
@@ -45,39 +46,38 @@ class Parser:
 
             # metadata detect
             is_metadata = False
-            for rule in self.rules:
-                if rule.get("type") == "metadata":
-                    patterns = rule.get("patterns", [])
-                    for pattern in patterns:
-                        match = re.search(pattern, line)
-                        if match:
-                            # If it's metadata, save the previous content
-                            if current_metadata:
-                                parsed_data.append({
-                                    **current_metadata,
-                                    "content": current_content
-                                })
-                                current_content = []
+            metadata_content = self.rules.get("metadata")
+            patterns = metadata_content.get("patterns", [])
+            for pattern in patterns:
+                match = re.search(pattern, line)
+                if match:
+                    # If it's metadata, save the previous content
+                    if current_metadata:
+                        parsed_data.append({
+                            **current_metadata,
+                            "content": current_content
+                        })
+                        current_content = []
 
-                            # Parsing new metadata
-                            current_metadata = {}
-                            groups = rule.get("groups", [])
-                            for i, key in enumerate(groups):
-                                if i + 1 <= len(match.groups()):  # Ensure effective
-                                    current_metadata[key] = match.group(i + 1).strip()
-                            is_metadata = True
-                            break
-                    if is_metadata:
-                        break
+                    # Parsing new metadata
+                    current_metadata = {}
+                    groups = metadata_content.get("groups", [])
+                    for i, key in enumerate(groups):
+                        if i + 1 <= len(match.groups()):  # Ensure effective
+                            current_metadata[key] = match.group(i + 1).strip()
+                    is_metadata = True
+                    break
 
             if is_metadata:
                 continue  # The metadata line has been processed, skip subsequent content matching
 
             # content detect
             remaining_line = line
+            rules = self.rules.get("content")
             while remaining_line:
                 matched = False
-                for rule in self.rules:
+                
+                for rule in rules:
                     # pass metadata rule
                     if rule["type"] == "metadata":
                         continue
