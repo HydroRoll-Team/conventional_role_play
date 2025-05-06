@@ -5,7 +5,7 @@ from typing import List, Dict, Optional
 
 class Parser:
     def __init__(self):
-        self.rules = []
+        self.rules: Dict[str, List[Dict]] = {}
 
     def load_rules(self, rules_path: str):
         """Load parsing rules."""
@@ -17,10 +17,8 @@ class Parser:
 
         rules = json5.loads(file_content)
 
-        # validation rule format
         if rules is None:
             raise ValueError(f"Rule file cannot be empty.")
-        # to be continue...
 
         self.rules = rules
         print(f"Rules loaded: {rules}\n")
@@ -73,6 +71,8 @@ class Parser:
     def _match_metadata(self, line: str) -> Optional[Dict]:
         """Match metadata line."""
         metadata_rule = self.rules.get("metadata")
+        if isinstance(metadata_rule, list) and metadata_rule:
+            metadata_rule = metadata_rule[0]
         if not metadata_rule:
             return None
 
