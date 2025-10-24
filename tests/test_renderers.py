@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-Renderers 模块单元测试
-"""
-
 import unittest
 import json
 from conventionalrp.renderers.html_renderer import HTMLRenderer
@@ -11,10 +6,7 @@ from conventionalrp.renderers.markdown_renderer import MarkdownRenderer
 
 
 class TestRenderers(unittest.TestCase):
-    """测试所有渲染器"""
-    
     def setUp(self):
-        """设置测试数据"""
         self.sample_data = [
             {
                 "type": "metadata",
@@ -40,7 +32,6 @@ class TestRenderers(unittest.TestCase):
         }
     
     def test_html_renderer_basic(self):
-        """测试 HTML 渲染器基本功能"""
         renderer = HTMLRenderer()
         output = renderer.render(self.sample_data)
         
@@ -50,51 +41,45 @@ class TestRenderers(unittest.TestCase):
         self.assertIn("<title>", output)
     
     def test_html_renderer_set_style(self):
-        """测试 HTML 渲染器设置样式"""
         renderer = HTMLRenderer()
         renderer.set_style("custom_style")
-        # 当前实现为占位符，仅测试不抛出异常
+        # now style is set, just ensure no exceptions
         self.assertIsNotNone(renderer)
     
     def test_json_renderer_basic(self):
-        """测试 JSON 渲染器基本功能"""
         renderer = JSONRenderer()
         output = renderer.render(self.sample_data)
         
         self.assertIsInstance(output, str)
         
-        # 验证输出是有效的 JSON
+        # Output should be valid JSON
         parsed = json.loads(output)
         self.assertIsInstance(parsed, list)
         self.assertEqual(len(parsed), len(self.sample_data))
     
     def test_json_renderer_unicode(self):
-        """测试 JSON 渲染器处理 Unicode"""
         renderer = JSONRenderer()
         output = renderer.render(self.sample_data)
         
-        # 应该保留中文字符
+        # should preserve Chinese characters
         self.assertIn("艾莉娅", output)
         self.assertIn("测试", output)
     
     def test_markdown_renderer_basic(self):
-        """测试 Markdown 渲染器基本功能"""
         renderer = MarkdownRenderer()
         output = renderer.render(self.dict_data)
         
         self.assertIsInstance(output, str)
-        self.assertIn("##", output)  # 应该有标题标记
-        self.assertIn("测试标题", output)
+        self.assertIn("##", output)
+        self.assertIn("test content", output)
     
     def test_markdown_renderer_set_style(self):
-        """测试 Markdown 渲染器设置样式"""
         renderer = MarkdownRenderer()
         style = {"heading_level": 2}
         renderer.set_style(style)
         self.assertEqual(renderer.style, style)
     
     def test_all_renderers_empty_data(self):
-        """测试所有渲染器处理空数据"""
         empty_data = []
         
         html_renderer = HTMLRenderer()

@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-Parser 模块单元测试
-"""
-
 import unittest
 import tempfile
 from pathlib import Path
@@ -10,13 +5,9 @@ from conventionalrp.core.parser import Parser
 
 
 class TestParser(unittest.TestCase):
-    """Parser 类的单元测试"""
-    
     def setUp(self):
-        """设置测试环境"""
         self.parser = Parser()
         
-        # 创建临时规则文件
         self.temp_rules = tempfile.NamedTemporaryFile(
             mode='w', 
             suffix='.json5', 
@@ -56,7 +47,6 @@ class TestParser(unittest.TestCase):
         }''')
         self.temp_rules.close()
         
-        # 创建临时日志文件
         self.temp_log = tempfile.NamedTemporaryFile(
             mode='w',
             suffix='.txt',
@@ -70,30 +60,25 @@ class TestParser(unittest.TestCase):
         self.temp_log.close()
     
     def tearDown(self):
-        """清理测试环境"""
         Path(self.temp_rules.name).unlink(missing_ok=True)
         Path(self.temp_log.name).unlink(missing_ok=True)
     
     def test_load_rules_success(self):
-        """测试成功加载规则文件"""
         self.parser.load_rules(self.temp_rules.name)
         self.assertIn("metadata", self.parser.rules)
         self.assertIn("content", self.parser.rules)
     
     def test_load_rules_file_not_found(self):
-        """测试加载不存在的规则文件"""
         with self.assertRaises(FileNotFoundError):
             self.parser.load_rules("nonexistent_file.json5")
     
     def test_parse_log_success(self):
-        """测试成功解析日志"""
         self.parser.load_rules(self.temp_rules.name)
         result = self.parser.parse_log(self.temp_log.name)
         
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
         
-        # 检查第一条记录
         first_entry = result[0]
         self.assertIn("timestamp", first_entry)
         self.assertIn("speaker", first_entry)
@@ -101,13 +86,11 @@ class TestParser(unittest.TestCase):
         self.assertEqual(first_entry["speaker"], "艾莉娅")
     
     def test_parse_log_file_not_found(self):
-        """测试解析不存在的日志文件"""
         self.parser.load_rules(self.temp_rules.name)
         with self.assertRaises(FileNotFoundError):
             self.parser.parse_log("nonexistent_log.txt")
     
     def test_match_metadata(self):
-        """测试元数据匹配"""
         self.parser.load_rules(self.temp_rules.name)
         line = "[2025-10-24 14:30:01] <艾莉娅> 测试内容"
         result = self.parser._match_metadata(line)
@@ -118,7 +101,6 @@ class TestParser(unittest.TestCase):
         self.assertEqual(result["speaker"], "艾莉娅")
     
     def test_parse_line_content_dialogue(self):
-        """测试解析对话内容"""
         self.parser.load_rules(self.temp_rules.name)
         line = "「这是一段对话」"
         result = self.parser._parse_line_content(line)
@@ -128,12 +110,10 @@ class TestParser(unittest.TestCase):
         self.assertEqual(result[0]["type"], "dialogue")
     
     def test_parse_line_content_dice_roll(self):
-        """测试解析骰子投掷"""
         self.parser.load_rules(self.temp_rules.name)
         line = "检定结果: [d20 = 18]"
         result = self.parser._parse_line_content(line)
         
-        # 应该包含文本和骰子投掷
         dice_tokens = [t for t in result if t["type"] == "dice_roll"]
         self.assertGreater(len(dice_tokens), 0)
 

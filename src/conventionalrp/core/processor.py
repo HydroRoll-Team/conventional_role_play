@@ -1,68 +1,104 @@
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Callable
+import logging
+from .rules import RuleEngine, Rule
+
+logger = logging.getLogger(__name__)
 
 
 class Processor:
-    """处理器，用于处理解析后的token"""
-    
     def __init__(self, rules: Optional[Dict[str, Any]] = None):
-        """
-        初始化处理器
-        
-        Args:
-            rules: 处理规则（可选）
-        """
         self.rules = rules or {}
-
-    def process_tokens(self, tokens: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """
-        处理token列表
+        self.rule_engine = RuleEngine()
+        self.custom_processors: List[Callable] = []
         
-        Args:
-            tokens: 解析后的token列表
+        self._load_rules_to_engine()
+        
+        logger.info("Processor initialized with %d rules", 
+                   self.rule_engine.rule_count())
+    
+    def _load_rules_to_engine(self):
+        if not isinstance(self.rules, dict):
+            return
+        
+        rules_list = self.rules.get("rules", [])
+        for rule_dict in rules_list:
+            if not isinstance(rule_dict, dict):
+                continue
             
-        Returns:
-            处理后的数据列表
-        """
+            try:
+                self.rule_engine.add_rule_dict(
+                    name=rule_dict.get("name", "unnamed"),
+                    condition=rule_dict.get("condition", {}),
+                    action=rule_dict.get("action", {}),
+                    priority=rule_dict.get("priority", 50)
+                )
+            except Exception as e:
+                logger.warning("Failed to load rule: %s", e)
+    
+    def add_rule(self, rule: Rule):
+        self.rule_engine.add_rule(rule)
+        logger.debug("Added rule: %s", rule.name)
+    
+    def add_processor(self, processor: Callable[[Dict[str, Any]], Dict[str, Any]]):
+        self.custom_processors.append(processor)
+        logger.debug("Added custom processor")
+    
+    def process_tokens(
+        self,
+        tokens: List[Dict[str, Any]],
+        apply_all_rules: bool = False
+    ) -> List[Dict[str, Any]]:
+        if not tokens:
+            logger.warning("Empty token list provided")
+            return []
+        
+        logger.info("Processing %d tokens", len(tokens))
         processed_data = []
-        for token in tokens:
-            processed_token = self.apply_rules(token)
-            processed_data.append(processed_token)
-        return processed_data
-
-    def apply_rules(self, token: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        对单个token应用规则
         
-        Args:
-            token: 单个token
-            
-        Returns:
-            处理后的token
-        """
-        # 基础实现：直接返回token
-        # 可以在此添加更多处理逻辑
+        for i, token in enumerate(tokens):
+            try:
+                processed_token = self.process_single_token(token, apply_all_rules)
+                processed_data.append(processed_token)
+            except Exception as e:
+                logger.error("Error processing token %d: %s", i, e)
+                # 发生错误时保留原始 token
+                processed_data.append(token)
+        
+        logger.info("Successfully processed %d tokens", len(processed_data))
+        return processed_data
+    
+    def process_single_token(
+        self,
+        token: Dict[str, Any],
+        apply_all_rules: bool = False
+    ) -> Dict[str, Any]:
         processed = token.copy()
         
-        # 添加处理时间戳
+        if self.rule_engine.rule_count() > 0:
+            processed = self.rule_engine.process(processed, apply_all_rules)
+        
+        for processor in self.custom_processors:
+            try:
+                processed = processor(processed)
+            except Exception as e:
+                logger.error("Custom processor failed: %s", e)
+        
         if "timestamp" in processed:
             processed["processed"] = True
             
         return processed
-
-    def generate_output(self, processed_data: List[Dict[str, Any]], format_type: str) -> str:
-        """
-        生成指定格式的输出
+    
+    def apply_rules(self, token: Dict[str, Any]) -> Dict[str, Any]:
+        return self.process_single_token(token)
+    
+    def generate_output(
+        self,
+        processed_data: List[Dict[str, Any]],
+        format_type: str
+    ) -> str:
+        logger.info("Generating %s output for %d items", 
+                   format_type, len(processed_data))
         
-        Args:
-            processed_data: 处理后的数据
-            format_type: 输出格式 (json/html/markdown)
-            
-        Returns:
-            格式化后的字符串
-            
-        Raises:
-            ValueError: 不支持的格式类型
-        """
         if format_type == "json":
             return self.generate_json_output(processed_data)
         elif format_type == "html":
@@ -71,20 +107,24 @@ class Processor:
             return self.generate_markdown_output(processed_data)
         else:
             raise ValueError(f"Unsupported format type: {format_type}")
-
+    
     def generate_json_output(self, processed_data: List[Dict[str, Any]]) -> str:
-        """生成JSON格式输出"""
         import json
         return json.dumps(processed_data, ensure_ascii=False, indent=2)
-
+    
     def generate_html_output(self, processed_data: List[Dict[str, Any]]) -> str:
-        """生成HTML格式输出"""
         return (
             "<html><body>"
             + "".join(f"<p>{data}</p>" for data in processed_data)
             + "</body></html>"
         )
-
+    
     def generate_markdown_output(self, processed_data: List[Dict[str, Any]]) -> str:
-        """生成Markdown格式输出"""
         return "\n".join(f"- {data}" for data in processed_data)
+    
+    def get_statistics(self) -> Dict[str, Any]:
+        return {
+            "rule_count": self.rule_engine.rule_count(),
+            "custom_processor_count": len(self.custom_processors),
+            "has_rules_config": bool(self.rules),
+        }
