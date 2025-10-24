@@ -1,0 +1,78 @@
+{
+  // D&D 5E TRPG 日志解析规则
+  metadata: [
+    {
+      type: "metadata",
+      patterns: [
+        "^\\[(.+?)\\]\\s*<(.+?)>\\s*(.*)$",  // [时间] <角色名> 内容
+        "^(.+?)\\s*\\|\\s*(.+?)\\s*:\\s*(.*)$"  // 时间 | 角色名: 内容
+      ],
+      groups: ["timestamp", "speaker", "content"],
+      priority: 100
+    }
+  ],
+  
+  content: [
+    {
+      type: "dice_roll",
+      match_type: "enclosed",
+      patterns: [
+        "\\[d(\\d+)\\s*=\\s*(\\d+)\\]",  // [d20 = 15]
+        "\\.r(\\d*)d(\\d+)(?:[+\\-](\\d+))?",  // .r1d20+5
+        "\\((\\d+)d(\\d+)(?:[+\\-](\\d+))?\\s*=\\s*(\\d+)\\)"  // (1d20+5 = 18)
+      ],
+      groups: ["dice_type", "result"],
+      priority: 90
+    },
+    {
+      type: "action",
+      match_type: "enclosed",
+      patterns: [
+        "\\*\\*(.+?)\\*\\*",  // **动作**
+        "\\*(.+?)\\*"  // *动作*
+      ],
+      groups: ["action_text"],
+      priority: 80
+    },
+    {
+      type: "ooc",
+      match_type: "enclosed",
+      patterns: [
+        "\\(\\((.+?)\\)\\)",  // ((OOC对话))
+        "//(.+?)$"  // //OOC注释
+      ],
+      groups: ["ooc_text"],
+      priority: 70
+    },
+    {
+      type: "dialogue",
+      match_type: "enclosed",
+      patterns: [
+        "「(.+?)」",
+        "\u201c(.+?)\u201d",
+        "\"(.+?)\""
+      ],
+      groups: ["dialogue_text"],
+      priority: 60
+    },
+    {
+      type: "system",
+      match_type: "prefix",
+      patterns: [
+        "^\\[系统\\](.+)",
+        "^\\[System\\](.+)"
+      ],
+      groups: ["system_message"],
+      priority: 50
+    },
+    {
+      type: "text",
+      match_type: "prefix",
+      patterns: [
+        "^(.+)$"
+      ],
+      groups: ["text_content"],
+      priority: 1
+    }
+  ]
+}
