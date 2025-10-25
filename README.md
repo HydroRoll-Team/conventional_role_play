@@ -2,7 +2,7 @@
 
 ## Overview
 
-Conventional Role Play (CRP) is a Python SDK designed for structured processing of tabletop role-playing game (TRPG) logs. It provides functionalities for parsing logs, extracting rules, and rendering outputs in multiple formats. This SDK aims to streamline the analysis and presentation of TRPG session data.
+Conventional Role Play (CVRP) is a Python SDK designed for structured processing of tabletop role-playing game (TRPG) logs. It provides functionalities for parsing logs, extracting rules, and rendering outputs in multiple formats. This SDK aims to streamline the analysis and presentation of TRPG session data.
 
 > **Note**  
 > This documentation is still under construction. Contributions are welcome! See contributing for more information.
