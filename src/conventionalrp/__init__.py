@@ -6,7 +6,7 @@ import sys
 from importlib.metadata import version
 
 from . import _core
-from .core import Parser, Processor, Rule, RuleEngine
+from .core import Parser, Processor, Rule, RuleEngine, AutoParser
 from .utils import (
     setup_logging,
     get_logger,
@@ -23,6 +23,7 @@ __all__ = [
     "Processor",
     "Rule",
     "RuleEngine",
+    "AutoParser",
     "setup_logging",
     "get_logger",
     "ConventionalRPError",
