@@ -30,19 +30,10 @@ try:
 except ImportError:
     THULAC_AVAILABLE = False
     logger.warning("THULAC not installed. Please install with: pip install thulac")
+    
 
 
 class THULACParser:
-    """
-    基于 THULAC 的智能 TRPG 日志解析器
-    
-    特性：
-    1. 使用 THULAC 进行中文分词和词性标注
-    2. 基于词性和上下文自动识别内容类型
-    3. 极简规则配置（只需配置分隔符）
-    4. 支持自定义词典扩展
-    """
-    
     # 默认分隔符配置（可通过 load_rules 覆盖）
     DEFAULT_DELIMITERS = {
         "dialogue": [
@@ -66,7 +57,6 @@ class THULACParser:
         ]
     }
     
-    # THULAC 词性到内容类型的映射
     POS_TYPE_MAPPING = {
         # 动词相关 -> 动作
         "v": "action",      # 动词
@@ -158,6 +148,7 @@ class THULACParser:
             rules_dict: 直接传入规则字典
             
         规则格式示例：
+        ```json
         {
             "delimiters": {
                 "dialogue": [["\"", "\""], [""", """]],
@@ -170,6 +161,7 @@ class THULACParser:
                 "守秘人": "np"
             }
         }
+        ```
         """
         import json5
         from pathlib import Path
@@ -227,7 +219,6 @@ class THULACParser:
                         "confidence": 1.0  # 分隔符匹配的置信度为 100%
                     })
         
-        # 按位置排序
         results.sort(key=lambda x: x["start"])
         return results
     
@@ -238,7 +229,6 @@ class THULACParser:
         Returns:
             List of {type, content, words, tags, confidence}
         """
-        # 使用 THULAC 进行分词和词性标注
         result = self.thulac.cut(text, text=False)  # 返回 [(word, pos), ...]
         
         if not result:
@@ -262,8 +252,6 @@ class THULACParser:
         
         # 基于词性和内容推断类型
         content_type = self._infer_content_type(words, tags)
-        
-        # 计算置信度
         confidence = self._calculate_confidence(words, tags, content_type)
         
         return [{
@@ -284,17 +272,14 @@ class THULACParser:
         2. 检查是否包含对话指示词 -> dialogue
         3. 统计主导词性 -> 按映射表判断
         """
-        # 策略1: 检查动作动词
         for word in words:
             if word in self.ACTION_VERBS:
                 return "action"
         
-        # 策略2: 检查对话指示词
         dialogue_indicators = sum(1 for w in words if w in self.DIALOGUE_INDICATORS)
         if dialogue_indicators >= 2:  # 至少2个对话指示词
             return "dialogue"
         
-        # 策略3: 统计词性
         pos_count = {}
         for tag in tags:
             if tag == "w":  # 忽略标点
@@ -329,7 +314,6 @@ class THULACParser:
         
         base_confidence = 0.5
         
-        # 因素1: 关键词匹配
         if content_type == "action":
             action_word_count = sum(1 for w in words if w in self.ACTION_VERBS)
             if action_word_count > 0:
@@ -338,8 +322,7 @@ class THULACParser:
             dialogue_word_count = sum(1 for w in words if w in self.DIALOGUE_INDICATORS)
             if dialogue_word_count >= 2:
                 base_confidence += 0.3
-        
-        # 因素2: 词性一致性
+
         unique_pos = len(set(tag for tag in tags if tag != "w"))
         if unique_pos == 1:
             base_confidence += 0.2
@@ -361,13 +344,11 @@ class THULACParser:
         results = []
         covered_ranges = set()
         
-        # 首先添加所有分隔符标记的内容
         for item in delimited:
             results.append(item)
             for i in range(item["start"], item["end"]):
                 covered_ranges.add(i)
         
-        # 然后分析未被覆盖的文本片段
         uncovered_segments = []
         start = 0
         for i in range(len(text)):
@@ -378,7 +359,6 @@ class THULACParser:
         if start < len(text):
             uncovered_segments.append((start, len(text)))
         
-        # 对未覆盖的片段使用 THULAC 分析
         for start, end in uncovered_segments:
             segment = text[start:end].strip()
             if segment:
@@ -388,7 +368,6 @@ class THULACParser:
                     item["end"] = end
                     results.append(item)
         
-        # 按位置重新排序
         results.sort(key=lambda x: x.get("start", 0))
         return results
     
