@@ -11,6 +11,7 @@ Conventional Role Play (CVRP) is a Python SDK designed for structured processing
 
 * **Rule Extraction**: Easily extract rules from JSON configuration files using the `RuleExtractor` class.
 * **Multi-format Rendering**: Render outputs in various formats such as HTML, Markdown, and JSON using the respective renderer classes (e.g., `HTMLRenderer`).
+* **THULAC Smart Parser**: 🆕 Intelligent parsing using Tsinghua THULAC (THU Lexical Analyzer for Chinese) for automatic content recognition with minimal configuration. See [THULAC Parser Documentation](docs/THULAC_PARSER.md).
 * **Extensibility**: Create custom plugins to extend the functionality of the SDK. See custom-plugins for details.
 * **Comprehensive API**: Full API documentation available for all modules and classes. See api-documentation.
 
@@ -23,6 +24,8 @@ pip install conventionalrp
 ```
 
 ## Basic Usage
+
+### Traditional Parser (Regex-based)
 
 Here is a simple example of how to use the TRPG Log Processor:
 
@@ -51,6 +54,38 @@ html_output = renderer.render(output)
 # Save or display the output
 with open('output.html', 'w') as f:
     f.write(html_output)
+```
+
+### THULAC Smart Parser
+
+Simplified parsing with automatic content recognition:
+
+```python
+from conventionalrp.core.thulac_parser import THULACParser
+
+# Step 1: Create parser
+parser = THULACParser(seg_only=False)
+
+# Step 2: Load simplified rules (just delimiters!)
+parser.load_rules('examples/rules/thulac_rules.json5')
+
+# Step 3: Parse a line
+text = '[15:30] <Alice> "Hello!"（waves）'
+result = parser.parse_line(text)
+
+# Result:
+# {
+#   "metadata": {"timestamp": "15:30", "speaker": "Alice"},
+#   "content": [
+#     {"type": "dialogue", "content": "Hello!", "confidence": 1.0},
+#     {"type": "action", "content": "waves", "confidence": 1.0}
+#   ]
+# }
+
+# Step 4: Parse entire log file
+results = parser.parse_log('path/to/log.txt')
+stats = parser.get_statistics()
+print(f"Parsed {stats['total_parsed']} lines")
 ```
 
 ## Custom Plugins
