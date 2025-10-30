@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.0] - 2025-10-30
+### New Features
+- [`898db38`](https://github.com/HydroRoll-Team/conventional_role_play/commit/898db38f66f2b6b0047df75eaf3ced0d64cda664) - ➕ Add dependency json5 *(commit by [@pineoncellar](https://github.com/pineoncellar))*
+- [`5f01c17`](https://github.com/HydroRoll-Team/conventional_role_play/commit/5f01c1710d4b6ae1e0ce9fba10f1528711a2f63f) - 🎨 More standardized log parse *(commit by [@pineoncellar](https://github.com/pineoncellar))*
+- [`9f7e4b5`](https://github.com/HydroRoll-Team/conventional_role_play/commit/9f7e4b5d0a4aa6d9536a6eb1471a110d716e2566) - :art: refactor log parsing logic with simplified rules and priority-based matching *(commit by [@pineoncellar](https://github.com/pineoncellar))*
+- [`a661b3a`](https://github.com/HydroRoll-Team/conventional_role_play/commit/a661b3ae3b5f6d41cd4d0b7d333285079d9905f9) - :art: update rules structure to use a dictionary for improved organization *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`08299b3`](https://github.com/HydroRoll-Team/conventional_role_play/commit/08299b37dfda86e56e4f2b442f68ccd2da7a82e3) - Enhance Processor, RuleExtractor, and Renderers with type hints and improved documentation *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`cbc653f`](https://github.com/HydroRoll-Team/conventional_role_play/commit/cbc653ffd0ea9abf4360623dc7a7651e1a49cc61) - Implement plugin system with combat tracker and dice analyzer *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Bug Fixes
+- [`3b0cd85`](https://github.com/HydroRoll-Team/conventional_role_play/commit/3b0cd85fd50ce159ce3bc219a9feb5d7b8650b0f) - :bug: using f.read() instead of json.load() *(commit by [@pineoncellar](https://github.com/pineoncellar))*
+- [`9d08302`](https://github.com/HydroRoll-Team/conventional_role_play/commit/9d08302e61c029a8550778f1824e25933d5c59df) - Remove unnecessary links from the documentation table of contents *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Refactors
+- [`965771f`](https://github.com/HydroRoll-Team/conventional_role_play/commit/965771fb0d85ddb27dc6c5dd7df822d1fb318286) - clean up code formatting and add new PluginManager class *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`69a6c86`](https://github.com/HydroRoll-Team/conventional_role_play/commit/69a6c865c584a87693513e01cce5c2ab44ae92aa) - Refactor code structure for improved readability and maintainability *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`421dd2a`](https://github.com/HydroRoll-Team/conventional_role_play/commit/421dd2a20c82339392359ff7302f09e469a0c27c) - 📝 Update example_log.log & example_rule.json *(commit by [@pineoncellar](https://github.com/pineoncellar))*
+- [`be5c321`](https://github.com/HydroRoll-Team/conventional_role_play/commit/be5c32141aaee8b6e17e1b6ce9e659a77cb026be) - **deps**: update pyo3 requirement from 0.24.0 to 0.25.0 *(commit by [@dependabot[bot]](https://github.com/apps/dependabot))*
+- [`65c3184`](https://github.com/HydroRoll-Team/conventional_role_play/commit/65c31844f6286aa85cce9d6b201d050424c1b687) - **docs**: update makefile and conf.py *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`8ccaab4`](https://github.com/HydroRoll-Team/conventional_role_play/commit/8ccaab4ff70f1e44e9594982f9baa78c4b1ee205) - **test**: Remove sensitive information *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`650403b`](https://github.com/HydroRoll-Team/conventional_role_play/commit/650403b82678ea3f542ab95c8a227345b9d8ece5) - Delete useless test dir *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`97c274a`](https://github.com/HydroRoll-Team/conventional_role_play/commit/97c274adc780748b986fa5347492616b321c2b13) - redactor `__version__` detector *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`eafadd7`](https://github.com/HydroRoll-Team/conventional_role_play/commit/eafadd7c059ceef979401e315d6cc2e0c9cbdded) - **deps**: update pyo3 requirement from 0.25.0 to 0.27.0 *(commit by [@dependabot[bot]](https://github.com/apps/dependabot))*
+- [`be5fcf9`](https://github.com/HydroRoll-Team/conventional_role_play/commit/be5fcf92f834b5c4f1c6f8c433bb01b937c7f6e7) - **typo**: fix abbr typo *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`2cdb395`](https://github.com/HydroRoll-Team/conventional_role_play/commit/2cdb39569c1ba967e04ee604b7a9610055c0af77) - update version to 1.2.0 in Cargo.toml *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v0.2.3] - 2025-03-15
 ### New Features
 - [`d7799f1`](https://github.com/HydroRoll-Team/conventional_role_play/commit/d7799f1ff7fca7525fd09c2e51f366be1d0886b5) - simple parser rules load and log processing *(commit by [@pineoncellar](https://github.com/pineoncellar))*
@@ -29,3 +58,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.2.1]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.0...v0.2.1
 [v0.2.2]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.1...v0.2.2
 [v0.2.3]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.2...v0.2.3
+[v1.2.0]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.3...v1.2.0
