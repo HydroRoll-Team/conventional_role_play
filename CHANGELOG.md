@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.2.1] - 2025-11-04
+### New Features
+- [`75ef2a5`](https://github.com/HydroRoll-Team/conventional_role_play/commit/75ef2a5677eddc14917c738815982c60c197e43c) - add AutoParser class for automated content classification *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+- [`4644d33`](https://github.com/HydroRoll-Team/conventional_role_play/commit/4644d33d0c23db46d706ec5667a759d6f92ebbf8) - add visualization tools for character relationship graphs *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Refactors
+- [`dcaf3a0`](https://github.com/HydroRoll-Team/conventional_role_play/commit/dcaf3a04f343f9f01191056fff9eb43f04d2b45f) - streamline THULACParser documentation and remove redundant comments *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+### Chores
+- [`c9b1331`](https://github.com/HydroRoll-Team/conventional_role_play/commit/c9b1331e2464356dc141923168339cbfa07aa09d) - **bump**: update version to 1.2.1 in Cargo.toml *(commit by [@HsiangNianian](https://github.com/HsiangNianian))*
+
+
 ## [v1.2.0] - 2025-10-30
 ### New Features
 - [`898db38`](https://github.com/HydroRoll-Team/conventional_role_play/commit/898db38f66f2b6b0047df75eaf3ced0d64cda664) - ➕ Add dependency json5 *(commit by [@pineoncellar](https://github.com/pineoncellar))*
@@ -59,3 +71,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.2.2]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.1...v0.2.2
 [v0.2.3]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.2...v0.2.3
 [v1.2.0]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v0.2.3...v1.2.0
+[v1.2.1]: https://github.com/HydroRoll-Team/conventional_role_play/compare/v1.2.0...v1.2.1
