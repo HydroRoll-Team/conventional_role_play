@@ -245,6 +245,7 @@ dependencies = [
     { name = "graphviz" },
     { name = "hanlp" },
     { name = "hanlp-restful" },
+    { name = "json5" },
     { name = "snownlp" },
 ]
 
@@ -271,6 +272,7 @@ requires-dist = [
     { name = "graphviz", specifier = ">=0.21" },
     { name = "hanlp", specifier = ">=2.1.3" },
     { name = "hanlp-restful", specifier = ">=0.0.24" },
+    { name = "json5", specifier = ">=0.12.1" },
     { name = "snownlp", specifier = ">=0.12.3" },
 ]
 
