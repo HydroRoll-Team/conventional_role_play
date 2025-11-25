@@ -11,7 +11,7 @@ Conventional Role Play (CVRP) is a Python SDK designed for structured processing
 
 * **Rule Extraction**: Easily extract rules from JSON configuration files using the `RuleExtractor` class.
 * **Multi-format Rendering**: Render outputs in various formats such as HTML, Markdown, and JSON using the respective renderer classes (e.g., `HTMLRenderer`).
-* **THULAC Smart Parser**: 🆕 Intelligent parsing using Tsinghua THULAC (THU Lexical Analyzer for Chinese) for automatic content recognition with minimal configuration. See [THULAC Parser Documentation](docs/THULAC_PARSER.md).
+* **THULAC Smart Parser**: Intelligent parsing using Tsinghua THULAC (THU Lexical Analyzer for Chinese) for automatic content recognition with minimal configuration. See [THULAC Parser Documentation](docs/THULAC_PARSER.md).
 * **Extensibility**: Create custom plugins to extend the functionality of the SDK. See custom-plugins for details.
 * **Comprehensive API**: Full API documentation available for all modules and classes. See api-documentation.
 
