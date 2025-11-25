@@ -17,10 +17,10 @@ Conventional Role Play (CVRP) is a Python SDK designed for structured processing
 
 ## Installation
 
-To install Conventional Role Play, you can use pip:
+To install Conventional Role Play, you can use uv or pip:
 
 ```bash
-pip install conventionalrp
+uv add conventionalrp
 ```
 
 ## Basic Usage
