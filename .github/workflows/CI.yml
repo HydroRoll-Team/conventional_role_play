@@ -141,10 +141,10 @@ jobs:
             target: macOS-15-arm64
           - runner: macos-15-intel
             target: macOS-15
-          - runner: macos-14
-            target: macOS-14-arm64
-          - runner: macos-14-large
-            target: macOS-14
+          # - runner: macos-14
+          #   target: macOS-14-arm64
+          # - runner: macos-14-large
+          #   target: macOS-14
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
