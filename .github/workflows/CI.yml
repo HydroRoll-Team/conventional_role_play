@@ -138,13 +138,9 @@ jobs:
       matrix:
         platform:
           - runner: macos-15
-            target: macOS-15-arm64
+            target: aarch64-apple-darwin
           - runner: macos-15-intel
-            target: macOS-15
-          # - runner: macos-14
-          #   target: macOS-14-arm64
-          # - runner: macos-14-large
-          #   target: macOS-14
+            target: x86_64-apple-darwin
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
