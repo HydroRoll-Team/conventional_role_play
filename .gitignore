@@ -39,3 +39,4 @@ logs/
 *.lib
 *.a
 *.so.*
+.python-version
