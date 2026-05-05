@@ -6,7 +6,7 @@ build-backend = "maturin"
 name = "conventionalrp"
 dynamic = ["version"]
 description = "HydroRoll Conventional Role Play SDK"
-authors = [{ name = "HsiangNianian", email = "leader@hydroroll.team" }]
+authors = [{ name = "HsiangNianian", email = "hsiangnianian@gmail.com" }]
 dependencies = [
     "base-model-trpgner>=0.1.6",
     "graphviz>=0.21",
